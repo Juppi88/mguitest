@@ -1,0 +1,18 @@
+[submodule "Libraries/MGUI"]
+	path = Libraries/MGUI
+	url = ../libraries/mgui.git
+[submodule "Libraries/Types"]
+	path = Libraries/Types
+	url = ../libraries/types.git
+[submodule "Libraries/Platform"]
+	path = Libraries/Platform
+	url = ../libraries/platform.git
+[submodule "Libraries/Stringy"]
+	path = Libraries/Stringy
+	url = ../libraries/stringy.git
+[submodule "Libraries/Input"]
+	path = Libraries/Input
+	url = ../libraries/input.git
+[submodule "Libraries/Math"]
+	path = Libraries/Math
+	url = ../libraries/math.git

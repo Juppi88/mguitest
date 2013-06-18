@@ -1,0 +1,5 @@
+/Builds
+/Projects/windows
+/Projects/*.sln
+/Projects/*.exe
+/Projects/*.ncb
