@@ -1,5 +1,16 @@
 /Builds
 /Projects/windows
+/Projects/linux
+/Projects/Makefile
+/Projects/premake4
+/Projects/.*
 /Projects/*.sln
 /Projects/*.exe
 /Projects/*.ncb
+/Projects/*.workspace*
+/Projects/*.layout
+/Projects/*.session
+/Projects/*.tags
+/Projects/*.mk
+/Projects/*.sh
+/Projects/*.list

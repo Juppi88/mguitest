@@ -2,13 +2,13 @@
 
 project "GuiTest"
 	kind "WindowedApp"
-	language "C++"
-	files { "*.h", "*.c", "*.cpp", "premake4.lua" }
+	language "C"
+	files { "*.h", "*.c", "premake4.lua" }
 	includedirs { ".", "../Libraries" }
 	vpaths { [""] = { "../Test" } }
 	targetname "guitest"
-	links { "Lib-Types", "Lib-Math", "Lib-MGUI", "Lib-MGUI-Renderer-OpenGL",
-			"Lib-Platform", "Lib-Stringy", "Lib-Input", "OpenGL32", "glu32" }
+	links { "Lib-MGUI", "Lib-MGUI-Renderer-X11", "Lib-Platform", "Lib-Math",
+			"Lib-Platform", "Lib-Stringy", "Lib-Input",  "X11", "pthread", "Lib-Types" }
 	
 	location ( "../Projects/" .. os.get() .. "/" .. _ACTION )
 	

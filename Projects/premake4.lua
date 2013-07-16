@@ -25,4 +25,4 @@ solution ( "Mylly " .. string.upper( _ACTION ) )
 	include "../Libraries/Stringy"
 	include "../Libraries/Types"
 	include "../Libraries/MGUI"
-	include "../Libraries/MGUI/Renderer/OpenGL"
+	include "../Libraries/MGUI/Renderer/X11"
