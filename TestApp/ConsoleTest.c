@@ -34,6 +34,7 @@ static void console_window_event( MGuiEvent* event )
 {
 	vectorscreen_t pos;
 	vectorscreen_t size;
+	int16 x, y;
 
 	switch ( event->type )
 	{
@@ -45,13 +46,16 @@ static void console_window_event( MGuiEvent* event )
 		mgui_window_get_drag_offset( event->element, &pos );
 		mgui_get_abs_size( event->element, &size );
 
-		window_pos_to_screen( (syswindow_t*)event->data, (int16*)&event->mouse.x, (int16*)&event->mouse.y );
+		x = event->mouse.x;
+		y = event->mouse.y;
 
-		pos.x = (int32)event->mouse.x - pos.x;
-		pos.y = (int32)event->mouse.y - pos.y;
+		window_pos_to_screen( wnd, &x, &y );
+
+		pos.x = x - pos.x;
+		pos.y = y - pos.y;
 
 		// Move the system window, don't let the GUI window move
-		set_window_pos( (syswindow_t*)event->data, pos.x, pos.y );
+		set_window_pos( wnd, pos.x, pos.y );
 		mgui_set_abs_pos_i( window, 0, 0 );
 
 		break;
@@ -122,9 +126,9 @@ void console_test_initialize( void )
 
 	// Main console window
 	window = mgui_create_window_ex( NULL, 0, 0, w, h, FLAG_NONE, COL_WINDOW, NULL );
-	mgui_set_text_s( window, _MTEXT("MGUI test Console") );
+	mgui_set_text_s( window, _MTEXT("MGUI Test Console") );
 	mgui_window_set_title_col_i( window, COL_TITLEBAR );
-	mgui_set_event_handler( window, console_window_event, (void*)wnd );
+	mgui_set_event_handler( window, console_window_event, NULL );
 
 	// Submit button
 	button = mgui_create_button_ex( window, w - 65, h - 56, 50, 22, FLAG_BORDER, COL_WINDOW, _MTEXT("Submit") );

@@ -58,6 +58,15 @@ bool message_hook( void* data )
 
 bool message_hook( void* data )
 {
+	XEvent* event = (XEvent*)data;
+
+	switch ( event->type )
+	{
+	case Expose:
+		mgui_force_redraw();
+		break;
+	}
+
 	return input_process( data );
 }
 
@@ -67,7 +76,7 @@ void guitest_init( void )
 {
 	MGuiRenderer* renderer;
 
-	wnd = create_system_window( 240, 160, 400, 450, _MTEXT("Mylly GUI Test"), false );
+	wnd = create_system_window( 240, 160, 400, 450, _MTEXT("Mylly GUI Test"), true );
 
 	input_initialize( wnd );
 	mgui_initialize( wnd, MGUI_USE_DRAW_EVENT );
@@ -93,7 +102,7 @@ void guitest_execute( void )
 
 		console_test_process();
 
-		process_window_messages( NULL, message_hook );
+		process_window_messages( wnd, message_hook );
 		mgui_process();
 
 		thread_sleep( 10 );

@@ -12,6 +12,5 @@
 /Projects/*.session
 /Projects/*.tags
 /Projects/*.mk
-/Projects/*.sh
 /Projects/*.list
 /Projects/*.suo
