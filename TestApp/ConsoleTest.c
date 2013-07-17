@@ -14,6 +14,16 @@
 #include "Platform/Window.h"
 #include "Math/MathUtils.h"
 
+// TODO:
+// - Fix font loading on x11 (size, flags etc)
+// - Font measurement (input stuff into the editbox, cursor pos offset)
+// - Clipboard - copy/paste
+// - Text paint/select colour
+// - Don't print delete and other weird chars
+// - Add clipping for text
+// - input_get_key_state needs fixing
+// - Scroll wheel processing
+
 // Default colour definitions
 #define COL_TEXT			RGBCOL(255,255,255)
 #define COL_TEXTBG			RGBCOL(20,20,20)
@@ -21,6 +31,14 @@
 #define COL_WINDOW			RGBCOL(75,75,75)
 #define COL_TITLEBAR		RGBCOL(10,10,10)
 #define CONSOLE_ALPHA		255
+
+#ifdef _WIN32
+#define CONSOLE_FONT		_MTEXT("Lucida Console")
+#define WINDOW_FONT			_MTEXT("Verdana")
+#else
+#define CONSOLE_FONT		_MTEXT("*arial black*")
+#define WINDOW_FONT			_MTEXT("fixed")
+#endif
 
 static MGuiWindow*		window		= NULL;
 static MGuiButton*		button		= NULL;
@@ -91,7 +109,7 @@ static void console_editbox_event( MGuiEvent* event )
 	case EVENT_INPUT_RETURN:
 		if ( mgui_get_text_len( editbox ) != 0 )
 		{
-			mgui_memobox_add_line_s( memobox, mgui_get_text( editbox ) );
+			mgui_memobox_add_line( memobox, "] %s", mgui_get_text( editbox ) );
 
 			mgui_set_text_s( editbox, "" );
 			mgui_set_focus( editbox );
@@ -133,19 +151,19 @@ void console_test_initialize( void )
 	// Submit button
 	button = mgui_create_button_ex( window, w - 65, h - 56, 50, 22, FLAG_BORDER, COL_WINDOW, _MTEXT("Submit") );
 	mgui_set_text_colour_i( button, COL_TEXT );
-	mgui_set_font( button, _MTEXT("Verdana"), 11, 0, 0 );
+	mgui_set_font( button, WINDOW_FONT, 11, 0, 0 );
 	mgui_set_event_handler( button, console_button_event, NULL );
 
 	// Editbox
 	editbox = mgui_create_editbox_ex( window, 12, h - 56, w - 86, 22, FLAG_NONE, COL_TEXTBG, NULL );
 	mgui_set_text_colour_i( editbox, COL_TEXT );
-	mgui_set_font( editbox, _MTEXT("Lucida Console"), 11, 0, 0 );
+	mgui_set_font( editbox, CONSOLE_FONT, 11, 0, 0 );
 	mgui_set_event_handler( editbox, console_editbox_event, NULL );
 
 	// Memobox (actual console part)
 	memobox = mgui_create_memobox_ex( window, 12, 10, w - 24, h - 74, FLAG_MEMO_TOPBOTTOM, COL_TEXTBG );
 	mgui_set_text_colour_i( memobox, COL_TEXT );
-	mgui_set_font( memobox, _MTEXT("Lucida Console"), 10, 0, 0 );
+	mgui_set_font( memobox, CONSOLE_FONT, 10, 0, 0 );
 	mgui_set_text_padding( memobox, 10, 4, 10, 10 );
 
 	mgui_set_alpha( window, CONSOLE_ALPHA );
@@ -157,6 +175,7 @@ void console_test_initialize( void )
 	mgui_memobox_add_line_s( memobox, "Press F10 to forcibly kill the app." );
 
 	set_mouse_cursor( CURSOR_ARROW );
+	mgui_set_focus( editbox );
 }
 
 void console_test_process( void )
