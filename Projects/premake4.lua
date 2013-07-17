@@ -25,4 +25,9 @@ solution ( "Mylly " .. string.upper( _ACTION ) )
 	include "../Libraries/Stringy"
 	include "../Libraries/Types"
 	include "../Libraries/MGUI"
-	include "../Libraries/MGUI/Renderer/X11"
+
+	if _ACTION == "vs2005" or _ACTION == "vs2008" or _ACTION == "vs2010" or _ACTION == "vs2012" then
+		include "../Libraries/MGUI/Renderer/OpenGL"
+	else
+		include "../Libraries/MGUI/Renderer/X11"
+	end

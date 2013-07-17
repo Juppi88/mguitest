@@ -9,12 +9,6 @@
  *
  **********************************************************************/
 
- // TODO:
- // - Make gui event struct return signed coordinates (maybe floats in 3D env)
- // - Make charset defines public
- // - Make the test app use WM_DRAW or similar for drawing instead of an infinite loop
- // - Add a function to platform library to call RedrawWindow or similar (to force a window redraw in a standalone app)
-
 #include "MGUI/MGUI.h"
 #include "Input/Input.h"
 #include "Platform/Window.h"
@@ -26,7 +20,7 @@
 #define COL_SCROLL			RGBCOL(50,50,50)
 #define COL_WINDOW			RGBCOL(75,75,75)
 #define COL_TITLEBAR		RGBCOL(10,10,10)
-#define CONSOLE_ALPHA		215
+#define CONSOLE_ALPHA		255
 
 static MGuiWindow*		window		= NULL;
 static MGuiButton*		button		= NULL;

@@ -14,3 +14,4 @@
 /Projects/*.mk
 /Projects/*.sh
 /Projects/*.list
+/Projects/*.suo

@@ -46,6 +46,7 @@ bool message_hook( void* data )
 		return true;
 
 	case WM_PAINT:
+		mgui_force_redraw();
 		break;
 	}
 
@@ -69,7 +70,7 @@ void guitest_init( void )
 	wnd = create_system_window( 240, 160, 400, 450, _MTEXT("Mylly GUI Test"), false );
 
 	input_initialize( wnd );
-	mgui_initialize( wnd );
+	mgui_initialize( wnd, MGUI_USE_DRAW_EVENT );
 
 #ifdef _WIN32
 	renderer = mgui_opengl_initialize( wnd );
@@ -95,7 +96,7 @@ void guitest_execute( void )
 		process_window_messages( NULL, message_hook );
 		mgui_process();
 
-		thread_sleep( 5 );
+		thread_sleep( 10 );
 	}
 }
 

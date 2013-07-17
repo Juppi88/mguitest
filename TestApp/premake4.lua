@@ -7,8 +7,7 @@ project "GuiTest"
 	includedirs { ".", "../Libraries" }
 	vpaths { [""] = { "../Test" } }
 	targetname "guitest"
-	links { "Lib-MGUI", "Lib-MGUI-Renderer-X11", "Lib-Platform", "Lib-Math",
-			"Lib-Platform", "Lib-Stringy", "Lib-Input",  "X11", "pthread", "Lib-Types" }
+	links { "Lib-MGUI", "Lib-Platform", "Lib-Math", "Lib-Platform", "Lib-Stringy", "Lib-Input", "Lib-Types" }
 	
 	location ( "../Projects/" .. os.get() .. "/" .. _ACTION )
 	
@@ -22,9 +21,11 @@ project "GuiTest"
 	configuration "linux"
 		buildoptions { "-fms-extensions" } -- Unnamed struct/union fields within structs/unions
 		targetextension ".bin"
+		links { "Lib-MGUI-Renderer-X11", "X11", "pthread" }
 	
 	-- Windows specific stuff
 	configuration "windows"
 		flags { "WinMain" }
 		targetextension ".exe"
 		buildoptions { "/wd4201" } -- C4201: nameless struct/union
+		links { "Lib-MGUI-Renderer-OpenGL", "opengl32", "glu32" }
