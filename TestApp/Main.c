@@ -76,7 +76,7 @@ void guitest_init( void )
 {
 	MGuiRenderer* renderer;
 
-	wnd = create_system_window( 240, 160, 400, 450, _MTEXT("Mylly GUI Test"), true );
+	wnd = create_system_window( 240, 160, 400, 450, _MTEXT("Mylly GUI Test"), false );
 
 	input_initialize( wnd );
 	mgui_initialize( wnd, MGUI_USE_DRAW_EVENT );
