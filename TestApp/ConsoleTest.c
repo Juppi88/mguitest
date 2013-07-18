@@ -15,12 +15,10 @@
 #include "Math/MathUtils.h"
 
 // TODO:
-// - Fix font loading on x11 (size, flags etc)
-// - Font measurement (input stuff into the editbox, cursor pos offset)
 // - Clipboard - copy/paste
-// - Text paint/select colour
-// - input_get_key_state needs fixing
 // - Scroll wheel processing
+// - Mouse cursors
+// - Actually use the default font
 
 // Default colour definitions
 #define COL_TEXT			RGBCOL(255,255,255)
@@ -33,9 +31,11 @@
 #ifdef _WIN32
 #define CONSOLE_FONT		_MTEXT("Lucida Console")
 #define WINDOW_FONT			_MTEXT("Verdana")
+#define TITLEBAR_FONT		_MTEXT("Tahoma")
 #else
-#define CONSOLE_FONT		_MTEXT("*arial black*")
-#define WINDOW_FONT			_MTEXT("fixed")
+#define CONSOLE_FONT		_MTEXT("*x13*")
+#define WINDOW_FONT			_MTEXT("lucidasans-8")
+#define TITLEBAR_FONT		_MTEXT("lucidasans-bold-8")
 #endif
 
 static MGuiWindow*		window		= NULL;
@@ -142,6 +142,7 @@ void console_test_initialize( void )
 
 	// Main console window
 	window = mgui_create_window_ex( NULL, 0, 0, w, h, FLAG_NONE, COL_WINDOW, NULL );
+	mgui_set_font( window, TITLEBAR_FONT, 10, FFLAG_BOLD, CHARSET_ANSI );
 	mgui_set_text_s( window, _MTEXT("MGUI Test Console") );
 	mgui_window_set_title_col_i( window, COL_TITLEBAR );
 	mgui_set_event_handler( window, console_window_event, NULL );
@@ -149,19 +150,19 @@ void console_test_initialize( void )
 	// Submit button
 	button = mgui_create_button_ex( window, w - 65, h - 56, 50, 22, FLAG_BORDER, COL_WINDOW, _MTEXT("Submit") );
 	mgui_set_text_colour_i( button, COL_TEXT );
-	mgui_set_font( button, WINDOW_FONT, 11, 0, 0 );
+	mgui_set_font( button, WINDOW_FONT, 11, FFLAG_NONE, CHARSET_ANSI );
 	mgui_set_event_handler( button, console_button_event, NULL );
 
 	// Editbox
 	editbox = mgui_create_editbox_ex( window, 12, h - 56, w - 86, 22, FLAG_NONE, COL_TEXTBG, NULL );
 	mgui_set_text_colour_i( editbox, COL_TEXT );
-	mgui_set_font( editbox, CONSOLE_FONT, 11, 0, 0 );
+	mgui_set_font( editbox, CONSOLE_FONT, 11, FFLAG_NONE, CHARSET_ANSI );
 	mgui_set_event_handler( editbox, console_editbox_event, NULL );
 
 	// Memobox (actual console part)
 	memobox = mgui_create_memobox_ex( window, 12, 10, w - 24, h - 74, FLAG_MEMO_TOPBOTTOM, COL_TEXTBG );
 	mgui_set_text_colour_i( memobox, COL_TEXT );
-	mgui_set_font( memobox, CONSOLE_FONT, 10, 0, 0 );
+	mgui_set_font( memobox, CONSOLE_FONT, 10, FFLAG_NONE, CHARSET_ANSI );
 	mgui_set_text_padding( memobox, 10, 4, 10, 10 );
 
 	mgui_set_alpha( window, CONSOLE_ALPHA );
