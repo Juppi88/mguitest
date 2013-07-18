@@ -19,8 +19,6 @@
 // - Font measurement (input stuff into the editbox, cursor pos offset)
 // - Clipboard - copy/paste
 // - Text paint/select colour
-// - Don't print delete and other weird chars
-// - Add clipping for text
 // - input_get_key_state needs fixing
 // - Scroll wheel processing
 
