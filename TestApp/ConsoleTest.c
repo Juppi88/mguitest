@@ -15,10 +15,10 @@
 #include "Math/MathUtils.h"
 
 // TODO:
-// - Clipboard - copy/paste
 // - Scroll wheel processing
 // - Mouse cursors
 // - Actually use the default font
+// - Fix is_window_visible
 
 // Default colour definitions
 #define COL_TEXT			RGBCOL(255,255,255)

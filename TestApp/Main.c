@@ -65,6 +65,11 @@ bool message_hook( void* data )
 	case Expose:
 		mgui_force_redraw();
 		break;
+
+	case SelectionNotify:
+	case SelectionRequest:
+		clipboard_handle_event( wnd, data );
+		break;
 	}
 
 	return input_process( data );
