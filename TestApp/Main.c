@@ -43,7 +43,7 @@ bool message_hook( void* data )
 	case WM_ACTIVATE:
 		if ( !HIWORD( msg->wParam ) ) active = true;
 		else active = false;
-		return true;
+		break;
 
 	case WM_PAINT:
 		mgui_force_redraw();
