@@ -14,12 +14,6 @@
 #include "Platform/Window.h"
 #include "Math/MathUtils.h"
 
-// TODO:
-// - Scroll wheel processing
-// - Mouse cursors
-// - Actually use the default font
-// - Fix is_window_visible
-
 // Default colour definitions
 #define COL_TEXT			RGBCOL(255,255,255)
 #define COL_TEXTBG			RGBCOL(20,20,20)
@@ -115,11 +109,11 @@ static void console_editbox_event( MGuiEvent* event )
 		break;
 
 	case EVENT_HOVER_ENTER:
-		set_mouse_cursor( CURSOR_TEXT );
+		set_mouse_cursor( wnd, CURSOR_TEXT );
 		break;
 
 	case EVENT_HOVER_LEAVE:
-		set_mouse_cursor( CURSOR_ARROW );
+		set_mouse_cursor( wnd, CURSOR_ARROW );
 		break;
 
 	default:
@@ -173,7 +167,7 @@ void console_test_initialize( void )
 	mgui_memobox_add_line_s( memobox, "MGUI test console loaded!" );
 	mgui_memobox_add_line_s( memobox, "Press F10 to forcibly kill the app." );
 
-	set_mouse_cursor( CURSOR_ARROW );
+	set_mouse_cursor( wnd, CURSOR_ARROW );
 	mgui_set_focus( editbox );
 }
 
@@ -184,5 +178,10 @@ void console_test_process( void )
 
 void console_test_shutdown( void )
 {
-	set_mouse_cursor( CURSOR_ARROW );
+	mgui_element_destroy( memobox );
+	mgui_element_destroy( editbox );
+	mgui_element_destroy( button );
+	mgui_element_destroy( window );
+
+	set_mouse_cursor( wnd, CURSOR_ARROW );
 }
