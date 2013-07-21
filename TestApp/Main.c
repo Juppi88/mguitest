@@ -19,7 +19,8 @@
 #include "ConsoleTest.h"
 
 #ifdef _WIN32
-#include "MGUI/Renderer/OpenGL/OpenGL.h"
+#include "MGUI/Renderer/GDIPlus/GDI.h"
+//#include "MGUI/Renderer/OpenGL/OpenGL.h"
 #else
 #include "MGUI/Renderer/X11/X11.h"
 #endif // _WIN32
@@ -87,7 +88,8 @@ void guitest_init( void )
 	mgui_initialize( wnd, MGUI_USE_DRAW_EVENT );
 
 #ifdef _WIN32
-	renderer = mgui_opengl_initialize( wnd );
+	renderer = mgui_gdiplus_initialize( wnd );
+	//renderer = mgui_opengl_initialize( wnd );
 #else
 	renderer = mgui_x11_initialize( wnd );
 #endif // _WIN32

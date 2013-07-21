@@ -28,4 +28,5 @@ project "GuiTest"
 		flags { "WinMain" }
 		targetextension ".exe"
 		buildoptions { "/wd4201" } -- C4201: nameless struct/union
-		links { "Lib-MGUI-Renderer-OpenGL", "opengl32", "glu32" }
+		--links { "Lib-MGUI-Renderer-OpenGL", "opengl32", "glu32" } -- Enable if you want to use OpenGL
+		links { "Lib-MGUI-Renderer-GDIPlus", "gdiplus" } -- Enable if you want to use GDI+

@@ -28,6 +28,7 @@ solution ( "Mylly " .. string.upper( _ACTION ) )
 
 	if _ACTION == "vs2005" or _ACTION == "vs2008" or _ACTION == "vs2010" or _ACTION == "vs2012" then
 		include "../Libraries/MGUI/Renderer/OpenGL"
+		include "../Libraries/MGUI/Renderer/GDIPlus"
 	else
 		include "../Libraries/MGUI/Renderer/X11"
 	end
