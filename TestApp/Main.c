@@ -17,10 +17,11 @@
 #include "Input/Input.h"
 #include "Math/Colour.h"
 #include "ConsoleTest.h"
+#include "RandomTest.h"
 
 #ifdef _WIN32
 #include "MGUI/Renderer/GDIPlus/GDI.h"
-//#include "MGUI/Renderer/OpenGL/OpenGL.h"
+#include "MGUI/Renderer/OpenGL/OpenGL.h"
 #else
 #include "MGUI/Renderer/X11/X11.h"
 #endif // _WIN32
@@ -88,8 +89,8 @@ void guitest_init( void )
 	mgui_initialize( wnd, MGUI_USE_DRAW_EVENT );
 
 #ifdef _WIN32
-	renderer = mgui_gdiplus_initialize( wnd );
-	//renderer = mgui_opengl_initialize( wnd );
+	//renderer = mgui_gdiplus_initialize( wnd );
+	renderer = mgui_opengl_initialize( wnd );
 #else
 	renderer = mgui_x11_initialize( wnd );
 #endif // _WIN32
@@ -98,7 +99,8 @@ void guitest_init( void )
 	mgui_set_skin( NULL );
 
 	// Run the console test
-	console_test_initialize();
+	//console_test_initialize();
+	random_test_initialize();
 }
 
 void guitest_execute( void )
@@ -107,7 +109,8 @@ void guitest_execute( void )
 	{
 		if ( !is_window_visible( wnd ) ) break;
 
-		console_test_process();
+		//console_test_process();
+		random_test_process();
 
 		process_window_messages( wnd, message_hook );
 		mgui_process();
@@ -118,7 +121,8 @@ void guitest_execute( void )
 
 void guitest_cleanup( void )
 {
-	console_test_shutdown();
+	//console_test_shutdown();
+	random_test_shutdown();
 
 	mgui_shutdown();
 	input_shutdown();
