@@ -17,6 +17,7 @@
 #include "Input/Input.h"
 #include "Math/Colour.h"
 #include "ConsoleTest.h"
+#include "RandomTest.h"
 
 #ifdef _WIN32
 //#include "MGUI/Renderer/GDIPlus/GDI.h"
@@ -99,6 +100,7 @@ void guitest_init( void )
 
 	// Run the console test
 	console_test_initialize();
+	//random_test_initialize();
 }
 
 void guitest_execute( void )
@@ -108,6 +110,7 @@ void guitest_execute( void )
 		if ( !is_window_visible( wnd ) ) break;
 
 		console_test_process();
+		//random_test_process();
 
 		process_window_messages( wnd, message_hook );
 		mgui_process();
@@ -119,6 +122,7 @@ void guitest_execute( void )
 void guitest_cleanup( void )
 {
 	console_test_shutdown();
+	//random_test_shutdown();
 
 	mgui_shutdown();
 	input_shutdown();
