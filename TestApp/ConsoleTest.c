@@ -157,6 +157,7 @@ void console_test_initialize( void )
 	memobox = mgui_create_memobox_ex( window, 12, 10, w - 24, h - 74, FLAG_MEMO_TOPBOTTOM, COL_TEXTBG );
 	mgui_set_text_colour_i( memobox, COL_TEXT );
 	mgui_set_font( memobox, CONSOLE_FONT, 10, FFLAG_NONE, CHARSET_ANSI );
+	mgui_add_flags( memobox, FLAG_TEXT_TAGS );
 	mgui_set_text_padding( memobox, 10, 4, 10, 10 );
 
 	mgui_set_alpha( window, CONSOLE_ALPHA );
@@ -164,8 +165,8 @@ void console_test_initialize( void )
 	// Add a keybind to open the console
 	input_add_key_down_bind( MKEY_F10, console_shutdown, NULL );
 
-	mgui_memobox_add_line_s( memobox, "MGUI test console loaded!" );
-	mgui_memobox_add_line_s( memobox, "Press F10 to forcibly kill the app." );
+	mgui_memobox_add_line_s( memobox, "[#00ff00]MGUI test console loaded![#d]" );
+	mgui_memobox_add_line_s( memobox, "Press [#uline][#ff0000]F10[#d][#u] to forcibly kill the app." );
 
 	set_mouse_cursor( wnd, CURSOR_ARROW );
 	mgui_set_focus( editbox );
