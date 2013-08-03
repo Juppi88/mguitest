@@ -142,10 +142,11 @@ void console_test_initialize( void )
 	mgui_set_event_handler( window, console_window_event, NULL );
 
 	// Submit button
-	button = mgui_create_button_ex( window, w - 65, h - 56, 50, 22, FLAG_BORDER, COL_WINDOW, _MTEXT("Submit") );
+	button = mgui_create_button_ex( window, w - 65, h - 56, 50, 22, FLAG_BORDER|FLAG_TEXT_TAGS, COL_WINDOW, "" );
 	mgui_set_text_colour_i( button, COL_TEXT );
 	mgui_set_font( button, WINDOW_FONT, 11, FFLAG_NONE, CHARSET_ANSI );
 	mgui_set_event_handler( button, console_button_event, NULL );
+	mgui_set_text_s( button,_MTEXT("[#00FF00]S[#uline]u[#u]bmit[#d]") );
 
 	// Editbox
 	editbox = mgui_create_editbox_ex( window, 12, h - 56, w - 86, 22, FLAG_NONE, COL_TEXTBG, NULL );
@@ -165,7 +166,7 @@ void console_test_initialize( void )
 	// Add a keybind to open the console
 	input_add_key_down_bind( MKEY_F10, console_shutdown, NULL );
 
-	mgui_memobox_add_line_s( memobox, "[#00ff00]MGUI test console loaded![#d]" );
+	mgui_memobox_add_line_s( memobox, "[#uline]MGUI[#u] [#00ff00]test console[#d] loaded!" );
 	mgui_memobox_add_line_s( memobox, "Press [#uline][#ff0000]F10[#d][#u] to forcibly kill the app." );
 
 	set_mouse_cursor( wnd, CURSOR_ARROW );
