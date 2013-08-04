@@ -142,11 +142,10 @@ void console_test_initialize( void )
 	mgui_set_event_handler( window, console_window_event, NULL );
 
 	// Submit button
-	button = mgui_create_button_ex( window, w - 65, h - 56, 50, 22, FLAG_BORDER|FLAG_TEXT_TAGS, COL_WINDOW, "" );
+	button = mgui_create_button_ex( window, w - 65, h - 56, 50, 22, FLAG_BORDER|FLAG_TEXT_TAGS, COL_WINDOW, _MTEXT( "[#0ffff0]S[#uline]ub[#u]mit[#d]" ) );
 	mgui_set_text_colour_i( button, COL_TEXT );
 	mgui_set_font( button, WINDOW_FONT, 11, FFLAG_NONE, CHARSET_ANSI );
 	mgui_set_event_handler( button, console_button_event, NULL );
-	mgui_set_text_s( button,_MTEXT("[#00FF00]S[#uline]u[#u]bmit[#d]") );
 
 	// Editbox
 	editbox = mgui_create_editbox_ex( window, 12, h - 56, w - 86, 22, FLAG_NONE, COL_TEXTBG, NULL );
