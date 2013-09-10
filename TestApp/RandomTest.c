@@ -32,6 +32,8 @@
 
 MGuiCanvas* canvas;
 MGuiLabel* label;
+MGuiProgressBar* progbar;
+static float progress = 0.0f;
 
 static bool shutdown( uint32 key, void* data )
 {
@@ -56,14 +58,22 @@ void random_test_initialize( void )
 	mgui_set_font_size( label, 18 );
 	mgui_set_text_colour_i( label, RGBCOL(0,255,0) );
 	mgui_set_text_padding( label, 0, 0, 0, 0 );
+
+	progbar = mgui_create_progressbar_ex( canvas, 50, 100, 100, 20, FLAG_NONE, RGBCOL(0,255,0), RGBCOL(255,0,0), 100.0f );
+	mgui_progressbar_set_value( progbar, 0.0f );
+	mgui_progressbar_set_bg_shade( progbar, 0.25f );
+	mgui_progressbar_set_thickness( progbar, 2 );
 }
 
 void random_test_process( void )
 {
-	// Nothing to do here. The main app loop will handle window event processing etc.
+	progress += 0.2f;
+	mgui_progressbar_set_value( progbar, progress );
+	mgui_force_redraw();
 }
 
 void random_test_shutdown( void )
 {
 	mgui_element_destroy( label );
+	mgui_element_destroy( progbar );
 }
