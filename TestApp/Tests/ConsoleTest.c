@@ -40,7 +40,7 @@ static MGuiMemobox*		memobox		= NULL;
 extern bool	running;
 extern syswindow_t* wnd;
 
-static void console_window_event( MGuiEvent* event )
+static void console_window_event( const MGuiEvent* event )
 {
 	vectorscreen_t pos;
 	vectorscreen_t size;
@@ -53,11 +53,11 @@ static void console_window_event( MGuiEvent* event )
 		break;
 
 	case EVENT_DRAG:
-		mgui_window_get_drag_offset( event->element, &pos );
-		mgui_get_abs_size( event->element, &size );
+		mgui_window_get_drag_offset( event->mouse.element, &pos );
+		mgui_get_abs_size( event->mouse.element, &size );
 
-		x = event->mouse.x;
-		y = event->mouse.y;
+		x = event->mouse.cursor_x;
+		y = event->mouse.cursor_y;
 
 		window_pos_to_screen( wnd, &x, &y );
 
@@ -75,7 +75,7 @@ static void console_window_event( MGuiEvent* event )
 	}
 }
 
-static void console_button_event( MGuiEvent* event )
+static void console_button_event( const MGuiEvent* event )
 {
 	switch ( event->type )
 	{
@@ -94,7 +94,7 @@ static void console_button_event( MGuiEvent* event )
 	}
 }
 
-static void console_editbox_event( MGuiEvent* event )
+static void console_editbox_event( const MGuiEvent* event )
 {
 	switch ( event->type )
 	{
@@ -135,9 +135,10 @@ void console_test_initialize( void )
 	uint16 w = 400, h = 450;
 
 	// Main console window
-	window = mgui_create_window_ex( NULL, 0, 0, w, h, FLAG_NONE, COL_WINDOW, NULL );
+	window = mgui_create_window_ex( NULL, 0, 0, w, h, FLAG_CACHE_TEXTURE, COL_WINDOW, NULL );
 	mgui_set_font( window, TITLEBAR_FONT, 10, FFLAG_BOLD, CHARSET_ANSI );
 	mgui_set_text_s( window, _MTEXT("MGUI Test Console") );
+	mgui_remove_flags( window, FLAG_WINDOW_RESIZABLE );
 	mgui_window_set_title_col_i( window, COL_TITLEBAR );
 	mgui_set_event_handler( window, console_window_event, NULL );
 
@@ -154,7 +155,7 @@ void console_test_initialize( void )
 	mgui_set_event_handler( editbox, console_editbox_event, NULL );
 
 	// Memobox (actual console part)
-	memobox = mgui_create_memobox_ex( window, 12, 10, w - 24, h - 74, FLAG_MEMO_TOPBOTTOM, COL_TEXTBG );
+	memobox = mgui_create_memobox_ex( window, 12, 10, w - 24, h - 74, FLAG_MEMOBOX_TOPBOTTOM, COL_TEXTBG );
 	mgui_set_text_colour_i( memobox, COL_TEXT );
 	mgui_set_font( memobox, CONSOLE_FONT, 10, FFLAG_NONE, CHARSET_ANSI );
 	mgui_add_flags( memobox, FLAG_TEXT_TAGS );

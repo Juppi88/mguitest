@@ -3,7 +3,7 @@
  * PROJECT:		Mylly GUI Test App
  * FILE:		Main.c
  * LICENCE:		See Licence.txt
- * PURPOSE:		A test app for Mylly GUI (Win32).
+ * PURPOSE:		A test app for Mylly GUI.
  *
  *				(c) Tuomo Jauhiainen 2012-13
  *
@@ -16,21 +16,14 @@
 #include "Stringy/Stringy.h"
 #include "Input/Input.h"
 #include "Math/Colour.h"
-#include "ConsoleTest.h"
-#include "RandomTest.h"
+#include "Tests/ConsoleTest.h"
+#include "Main.h"
+
+bool running = true;
+syswindow_t* wnd = NULL;
 
 #ifdef _WIN32
-#include "MGUI/Renderer/GDIPlus/GDI.h"
-#include "MGUI/Renderer/OpenGL/OpenGL.h"
-#else
-#include "MGUI/Renderer/X11/X11.h"
-#endif // _WIN32
-
-bool			running		= true;
-syswindow_t*	wnd			= NULL;
-
-#ifdef _WIN32
-static bool		active		= true;
+static bool active = true;
 #endif
 
 #ifdef _WIN32
@@ -81,26 +74,16 @@ bool message_hook( void* data )
 
 void guitest_init( void )
 {
-	MGuiRenderer* renderer;
-
 	wnd = create_system_window( 240, 160, 400, 450, _MTEXT("Mylly GUI Test"), false, message_hook );
 
 	input_initialize( wnd );
-	mgui_initialize( wnd, MGUI_USE_DRAW_EVENT );
+	mgui_initialize( wnd, MGUI_USE_DRAW_EVENT ); // Only update the window when there's something to update.
 
-#ifdef _WIN32
-	//renderer = mgui_gdiplus_initialize( wnd );
-	renderer = mgui_opengl_initialize( wnd );
-#else
-	renderer = mgui_x11_initialize( wnd );
-#endif // _WIN32
-
-	mgui_set_renderer( renderer );
-	mgui_set_skin( NULL );
-
-	// Run the console test
-	//console_test_initialize();
-	random_test_initialize();
+	// Create a test renderer.
+	test_initialize();
+		
+	// Run the actual test code
+	console_test_initialize();
 }
 
 void guitest_execute( void )
@@ -109,24 +92,34 @@ void guitest_execute( void )
 	{
 		if ( !is_window_visible( wnd ) ) break;
 
-		//console_test_process();
-		random_test_process();
+		console_test_process();
 
 		process_window_messages( wnd, message_hook );
+
+		// Tell the renderer to begin a new scene.
+		test_begin_frame();
+
+		// Let MGUI do pre-processing (re-draw render caches) and processing.
+		mgui_pre_process();
 		mgui_process();
 
-		thread_sleep( 10 );
+		// End the scene.
+		test_end_frame();
+
+		thread_sleep( 15 );
 	}
 }
 
 void guitest_cleanup( void )
 {
-	//console_test_shutdown();
-	random_test_shutdown();
+	console_test_shutdown();
 
 	mgui_shutdown();
 	input_shutdown();
 
+	// Shutdown the test renderer and do cleanup.
+	test_shutdown();
+	
 	destroy_system_window( wnd );
 }
 

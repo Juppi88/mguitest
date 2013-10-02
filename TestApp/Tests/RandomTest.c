@@ -35,7 +35,7 @@ MGuiLabel* label;
 MGuiProgressBar* progbar;
 static float progress = 0.0f;
 
-static bool shutdown( uint32 key, void* data )
+static bool app_shutdown( uint32 key, void* data )
 {
 	extern bool running;
 
@@ -47,7 +47,7 @@ static bool shutdown( uint32 key, void* data )
 
 void random_test_initialize( void )
 {
-	input_add_key_down_bind( MKEY_F10, shutdown, NULL );
+	input_add_key_down_bind( MKEY_F10, app_shutdown, NULL );
 
 	canvas = mgui_create_canvas( NULL );
 	mgui_add_flags( canvas, FLAG_BACKGROUND );
