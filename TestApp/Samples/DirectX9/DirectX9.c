@@ -13,6 +13,8 @@
 #include "Platform/Window.h"
 #include <stdio.h>
 
+const char_t* renderer_name = _MTEXT( "DirectX 9" );
+
 void test_initialize( void )
 {
 	FILE* skin;

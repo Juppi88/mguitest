@@ -133,17 +133,18 @@ static bool console_shutdown( uint32 key, void* data )
 void console_test_initialize( void )
 {
 	uint16 w = 400, h = 450;
+	extern char_t* renderer_name;
 
 	// Main console window
-	window = mgui_create_window_ex( NULL, 0, 0, w, h, FLAG_CACHE_TEXTURE, COL_WINDOW, NULL );
+	window = mgui_create_window_ex( NULL, 0, 0, w, h, FLAG_CACHE_TEXTURE|FLAG_TEXT_TAGS, COL_WINDOW, NULL );
 	mgui_set_font( window, TITLEBAR_FONT, 10, FFLAG_BOLD, CHARSET_ANSI );
-	mgui_set_text_s( window, _MTEXT("MGUI Test Console") );
+	mgui_set_text_s( window, _MTEXT("[#22ff22]MGUI[#d] Test Console") );
 	mgui_remove_flags( window, FLAG_WINDOW_RESIZABLE );
 	mgui_window_set_title_col_i( window, COL_TITLEBAR );
 	mgui_set_event_handler( window, console_window_event, NULL );
 
 	// Submit button
-	button = mgui_create_button_ex( window, w - 65, h - 56, 50, 22, FLAG_BORDER|FLAG_TEXT_TAGS, COL_WINDOW, _MTEXT( "[#0ffff0]S[#uline]ub[#u]mit[#d]" ) );
+	button = mgui_create_button_ex( window, w - 65, h - 56, 50, 22, FLAG_BORDER, COL_WINDOW, _MTEXT( "Submit" ) );
 	mgui_set_text_colour_i( button, COL_TEXT );
 	mgui_set_font( button, WINDOW_FONT, 11, FFLAG_NONE, CHARSET_ANSI );
 	mgui_set_event_handler( button, console_button_event, NULL );
@@ -166,8 +167,8 @@ void console_test_initialize( void )
 	// Add a keybind to open the console
 	input_add_key_down_bind( MKEY_F10, console_shutdown, NULL );
 
-	mgui_memobox_add_line_s( memobox, "[#uline]MGUI[#u] [#00ff00]test console[#d] loaded!" );
-	mgui_memobox_add_line_s( memobox, "Press [#uline][#ff0000]F10[#d][#u] to forcibly kill the app." );
+	mgui_memobox_add_line_s( memobox, "[#22ff22]MGUI[#e] test console loaded!" );
+	mgui_memobox_add_line( memobox, "Using [#ff0000][#uline]%s[#e] renderer.", renderer_name );
 
 	set_mouse_cursor( wnd, CURSOR_ARROW );
 	mgui_set_focus( editbox );
