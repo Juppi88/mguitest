@@ -30,10 +30,10 @@
 #define TITLEBAR_FONT		_MTEXT("lucidasans-bold-8")
 #endif
 
-MGuiCanvas* canvas;
-MGuiLabel* label;
-MGuiProgressBar* progbar;
-static float progress = 0.0f;
+MGuiCanvas*			canvas	= NULL;
+MGuiLabel*			label	= NULL;
+MGuiProgressbar*	progbar	= NULL;
+static float		progress = 0.0f;
 
 static bool app_shutdown( uint32 key, void* data )
 {
@@ -53,7 +53,7 @@ void random_test_initialize( void )
 	mgui_add_flags( canvas, FLAG_BACKGROUND );
 	mgui_set_colour_i( canvas, 0xFFFFFFFF );
 
-	label = mgui_create_label_ex( canvas, 50, 50, 125, 30, FLAG_BORDER|FLAG_CLIP, RGBCOL(0,0,0), "bewbs" );
+	label = mgui_create_label_ex( canvas, 50, 50, 125, 30, FLAG_BORDER|FLAG_CLIP, RGBCOL(0,0,0), "yeah" );
 	mgui_set_alignment( label, ALIGN_RIGHT|ALIGN_TOP );
 	mgui_set_font_size( label, 18 );
 	mgui_set_text_colour_i( label, RGBCOL(0,255,0) );

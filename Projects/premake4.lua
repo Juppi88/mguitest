@@ -40,6 +40,8 @@ solution ( "Mylly " .. string.upper( _ACTION ) )
 		include "../TestApp/Samples/OpenGL"
 	else
 		-- Include Linux renderers
-		--include "../Libraries/MGUI/Renderer/X11"
+		include "../Libraries/MGUI/Renderer/Xlib"
+		
 		-- Include Linux samples
+		include "../TestApp/Samples/Xlib"
 	end
