@@ -1,18 +1,18 @@
 [submodule "Libraries/MGUI"]
 	path = Libraries/MGUI
-	url = ../libraries/mgui.git
+	url = https://github.com/teejii88/mgui.git
 [submodule "Libraries/Types"]
 	path = Libraries/Types
-	url = ../libraries/types.git
+	url = https://github.com/teejii88/types.git
 [submodule "Libraries/Platform"]
 	path = Libraries/Platform
-	url = ../libraries/platform.git
+	url = https://github.com/teejii88/platform.git
 [submodule "Libraries/Stringy"]
 	path = Libraries/Stringy
-	url = ../libraries/stringy.git
+	url = https://github.com/teejii88/stringy.git
 [submodule "Libraries/Input"]
 	path = Libraries/Input
-	url = ../libraries/input.git
+	url = https://github.com/teejii88/input.git
 [submodule "Libraries/Math"]
 	path = Libraries/Math
-	url = ../libraries/math.git
+	url = https://github.com/teejii88/math.git
