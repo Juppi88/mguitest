@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 const char_t* renderer_name = _MTEXT( "OpenGL" );
+const char_t* sprite_path = _MTEXT( "sprite.bmp" );
 
 void test_initialize( void )
 {

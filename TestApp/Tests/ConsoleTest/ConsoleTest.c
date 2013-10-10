@@ -140,7 +140,7 @@ void console_test_initialize( void )
 	mgui_set_font( window, TITLEBAR_FONT, 10, FFLAG_BOLD, CHARSET_ANSI );
 	mgui_set_text_s( window, _MTEXT("[#22ff22]MGUI[#d] Test Console") );
 	mgui_remove_flags( window, FLAG_WINDOW_RESIZABLE );
-	mgui_window_set_title_col_i( window, COL_TITLEBAR );
+	mgui_window_set_title_colour_i( window, COL_TITLEBAR );
 	mgui_set_event_handler( window, console_window_event, NULL );
 
 	// Submit button

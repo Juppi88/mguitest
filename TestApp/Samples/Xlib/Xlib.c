@@ -13,6 +13,7 @@
 #include "Platform/Window.h"
 
 const char_t* renderer_name = _MTEXT( "Xlib" );
+const char_t* sprite_path = __MTEXT( "" );
 
 void test_initialize( void )
 {

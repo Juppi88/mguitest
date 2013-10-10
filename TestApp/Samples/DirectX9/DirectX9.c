@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 const char_t* renderer_name = _MTEXT( "DirectX 9" );
+const char_t* sprite_path = _MTEXT( "sprite.png" );
 
 void test_initialize( void )
 {

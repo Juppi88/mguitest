@@ -3,12 +3,12 @@
 project "GuiTest-Xlib"
 	kind "WindowedApp"
 	language "C"
-	files { "*.h", "*.c", "../../*", "../../Tests/*", "premake4.lua" }
+	files { "*.h", "*.c", "../../*", "../../Tests/UnitTest/*", "premake4.lua" }
 	includedirs { ".", "../../", "../../../Libraries" }
 	targetname "guitest-xlib"
 	
 	vpaths {
-			["Tests"] = { "../../Tests/*" },
+			["Tests"] = { "../../Tests/UnitTest/*" },
 			[""] = { ".", "../../*" }
 		}
 	

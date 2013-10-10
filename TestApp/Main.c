@@ -16,7 +16,7 @@
 #include "Stringy/Stringy.h"
 #include "Input/Input.h"
 #include "Math/Colour.h"
-#include "Tests/ConsoleTest.h"
+#include "Tests/UnitTest/UnitTest.h"
 #include "Main.h"
 
 bool running = true;
@@ -74,7 +74,12 @@ bool message_hook( void* data )
 
 void guitest_init( void )
 {
-	wnd = create_system_window( 240, 160, 400, 450, _MTEXT("Mylly GUI Test"), false, message_hook );
+	char_t title[64];
+	extern char_t* renderer_name;
+
+	sprintf( title, "Mylly GUI %s Test", renderer_name );
+
+	wnd = create_system_window( 240, 160, 800, 600, title, true, message_hook );
 
 	input_initialize( wnd );
 	mgui_initialize( wnd, MGUI_USE_DRAW_EVENT ); // Only update the window when there's something to update.
@@ -83,7 +88,9 @@ void guitest_init( void )
 	test_initialize();
 		
 	// Run the actual test code
-	console_test_initialize();
+	unit_test_initialize();
+
+	set_mouse_cursor( wnd, CURSOR_ARROW );
 }
 
 void guitest_execute( void )
@@ -92,7 +99,7 @@ void guitest_execute( void )
 	{
 		if ( !is_window_visible( wnd ) ) break;
 
-		console_test_process();
+		unit_test_process();
 
 		process_window_messages( wnd, message_hook );
 
@@ -112,7 +119,7 @@ void guitest_execute( void )
 
 void guitest_cleanup( void )
 {
-	console_test_shutdown();
+	unit_test_shutdown();
 
 	mgui_shutdown();
 	input_shutdown();
