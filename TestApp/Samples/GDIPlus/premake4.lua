@@ -3,12 +3,14 @@
 project "GuiTest-GDIPlus"
 	kind "WindowedApp"
 	language "C"
-	files { "*.h", "*.c", "../../*", "../../Tests/UnitTest/*", "premake4.lua" }
+	--files { "*.h", "*.c", "../../*", "../../Tests/UnitTest/*", "premake4.lua" }
+	files { "*.h", "*.c", "../../*", "../../Tests/ConsoleTest/*", "premake4.lua" }
 	includedirs { ".", "../../", "../../../Libraries" }
 	targetname "guitest-gdiplus"
 	
 	vpaths {
-			["Tests"] = { "../../Tests/UnitTest/*" },
+			--["Tests"] = { "../../Tests/UnitTest/*" },
+			["Tests"] = { "../../Tests/ConsoleTest/*" },
 			[""] = { ".", "../../*" }
 		}
 	

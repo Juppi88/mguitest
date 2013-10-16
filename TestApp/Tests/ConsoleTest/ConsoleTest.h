@@ -16,5 +16,6 @@
 void console_test_initialize( void );
 void console_test_process( void );
 void console_test_shutdown( void );
+void console_test_resize( uint16 w, uint16 h );
 
  #endif // __MGUI_CONSOLE_TEST_H

@@ -188,3 +188,20 @@ void console_test_shutdown( void )
 
 	set_mouse_cursor( wnd, CURSOR_ARROW );
 }
+
+void console_test_resize( uint16 w, uint16 h )
+{
+	if ( window == NULL ) return;
+
+	mgui_set_abs_pos_i( window, 0, 0 );
+	mgui_set_abs_size_i( window, w, h );
+
+	mgui_set_abs_pos_i( button, w - 65, h - 56 );
+	mgui_set_abs_size_i( button, 50, 22 );
+
+	mgui_set_abs_pos_i( editbox, 12, h - 56 );
+	mgui_set_abs_size_i( editbox, w - 86, 22 );
+
+	mgui_set_abs_pos_i( memobox, 12, 10 );
+	mgui_set_abs_size_i( memobox, w - 24, h - 74 );
+}
