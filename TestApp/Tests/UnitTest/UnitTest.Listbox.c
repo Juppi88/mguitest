@@ -23,6 +23,9 @@ static void unit_test_listbox_event( const MGuiEvent* event )
 	case EVENT_LISTBOX_SELECT:
 		mgui_memobox_add_line( output_memo, "[EVENT_LISTBOX_SELECT] Selected item: %s", mgui_listbox_get_item_text( event->list.item ) );
 		break;
+
+	default:
+		break;
 	}
 }
 
