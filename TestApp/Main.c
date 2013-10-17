@@ -16,8 +16,7 @@
 #include "Stringy/Stringy.h"
 #include "Input/Input.h"
 #include "Math/Colour.h"
-//#include "Tests/UnitTest/UnitTest.h"
-#include "Tests/ConsoleTest/ConsoleTest.h"
+#include "Tests/UnitTest/UnitTest.h"
 #include "Main.h"
 
 bool running = true;
@@ -47,7 +46,6 @@ bool message_hook( void* data )
 
 	case WM_SIZE:
 		mgui_resize( LOWORD( msg->lParam ), HIWORD( msg->lParam ) );
-		console_test_resize( LOWORD( msg->lParam ), HIWORD( msg->lParam ) );
 		break;
 	}
 
@@ -94,8 +92,7 @@ void guitest_init( void )
 	test_initialize();
 		
 	// Run the actual test code
-	///unit_test_initialize();
-	console_test_initialize();
+	unit_test_initialize();
 
 	set_mouse_cursor( wnd, CURSOR_ARROW );
 }
@@ -106,8 +103,7 @@ void guitest_execute( void )
 	{
 		if ( !is_window_visible( wnd ) ) break;
 
-		///unit_test_process();
-		console_test_process();
+		unit_test_process();
 
 		process_window_messages( wnd, message_hook );
 
@@ -127,8 +123,7 @@ void guitest_execute( void )
 
 void guitest_cleanup( void )
 {
-	///unit_test_shutdown();
-	console_test_shutdown();
+	unit_test_shutdown();
 
 	mgui_shutdown();
 	input_shutdown();
