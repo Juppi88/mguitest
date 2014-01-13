@@ -37,6 +37,7 @@ void unit_test_initialize( void )
 	// Initialize the element list and output window.
 	unit_test_create_element_list();
 	unit_test_create_output_window();
+	unit_test_create_fps_label();
 
 	// Add a quick keybind to shut down the test app.
 	input_add_key_down_bind( MKEY_F10, keybind_shutdown, NULL );
@@ -56,7 +57,7 @@ void unit_test_initialize( void )
 
 void unit_test_process( void )
 {
-	// Nothing to do here.
+	unit_test_update_fps_label();
 }
 
 void unit_test_shutdown( void )
@@ -75,6 +76,7 @@ void unit_test_shutdown( void )
 
 	unit_test_destroy_element_list();
 	unit_test_destroy_output_window();
+	unit_test_destroy_fps_label();
 
 	mgui_element_destroy( canvas );
 }

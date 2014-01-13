@@ -41,6 +41,10 @@ void	unit_test_destroy_element_list	( void );
 void	unit_test_create_output_window	( void );
 void	unit_test_destroy_output_window	( void );
 
+void	unit_test_create_fps_label		( void );
+void	unit_test_destroy_fps_label		( void );
+void	unit_test_update_fps_label		( void );
+
 // Button test
 void	unit_test_create_button			( void );
 void	unit_test_destroy_button		( void );

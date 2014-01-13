@@ -86,7 +86,8 @@ void guitest_init( void )
 	wnd = create_system_window( 240, 160, 800, 600, title, true, message_hook );
 
 	input_initialize( wnd );
-	mgui_initialize( wnd, MGUI_USE_DRAW_EVENT ); // Only update the window when there's something to update.
+	//mgui_initialize( wnd, MGUI_USE_DRAW_EVENT ); // Only update the window when there's something to update.
+	mgui_initialize( wnd, MGUI_NO_PARAMS );
 
 	// Create a test renderer.
 	test_initialize();
@@ -117,7 +118,7 @@ void guitest_execute( void )
 		// End the scene.
 		test_end_frame();
 
-		thread_sleep( 15 );
+///		thread_sleep( 15 );
 	}
 }
 

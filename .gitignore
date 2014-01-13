@@ -16,3 +16,6 @@
 /Projects/*.suo
 /Projects/*.sdf
 /Projects/*.sh
+/Projects/*.psess
+/Projects/*.vsp
+/Projects/CodeAnalyst

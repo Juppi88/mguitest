@@ -24,6 +24,12 @@ void unit_test_create_memobox( void )
 	mgui_set_text_colour_i( memobox, COL_TEXT );
 	mgui_set_font( memobox, TITLEBAR_FONT, 11, FFLAG_NONE, CHARSET_ANSI );
 
+	mgui_memobox_add_line_s( memobox, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+		"quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum "
+		"dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." );
+
+	mgui_memobox_add_line_s( memobox, "" );
+
 	mgui_memobox_add_line_s( memobox, "Memoboxes are multiline textboxes specifically designed to work as chatboxes and other output windows. One of their default properties is automatic word wrapping." );
 	mgui_memobox_add_line_s( memobox, "" );
 
