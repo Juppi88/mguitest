@@ -18,4 +18,5 @@
 /Projects/*.sh
 /Projects/*.psess
 /Projects/*.vsp
+/Projects/*.opensdf
 /Projects/CodeAnalyst
