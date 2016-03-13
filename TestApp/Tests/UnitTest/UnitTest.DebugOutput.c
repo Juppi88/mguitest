@@ -25,9 +25,13 @@ void unit_test_create_output_window( void )
 	mgui_remove_flags( output_window, FLAG_WINDOW_CLOSEBTN|FLAG_WINDOW_RESIZABLE );
 
 	// Create a memobox on which to show the events.
-	output_memo = mgui_create_memobox_ex( output_window, 5, 5, 600, 145, FLAG_MEMOBOX_TOPBOTTOM, COL_TEXTBG );
+	output_memo = mgui_create_memobox_ex( NULL, 0, 0, 600, 145, FLAG_MEMOBOX_TOPBOTTOM, COL_TEXTBG );
 	mgui_set_font( output_memo, CONSOLE_FONT, 10, FFLAG_NONE, CHARSET_ANSI );
 	mgui_set_text_colour_i( output_memo, COL_TEXT );
+
+	// Test setting parent after element creation.
+	mgui_add_child( output_window, output_memo );
+	mgui_set_abs_pos_i( output_memo, 5, 5 );
 }
 
 void unit_test_destroy_output_window( void )
